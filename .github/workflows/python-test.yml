@@ -1,0 +1,26 @@
+name: Python Test Workflow
+
+# 触发条件：当代码推送到 main 分支时自动运行
+on:
+  push:
+    branches: [ main ]
+
+# 要执行的任务
+jobs:
+  test:
+    runs-on: ubuntu-latest  # 运行在 Ubuntu 系统上
+    steps:
+      # 步骤1：拉取你的代码
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 步骤2：设置 Python 环境
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # 步骤3：运行一个简单的测试命令
+      - name: Run a simple test
+        run: |
+          python -c "print('✅ Hello, GitHub Actions! I am running successfully!')"
